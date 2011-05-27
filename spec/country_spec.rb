@@ -118,15 +118,25 @@ describe ISO3166::Country do
 
   describe ".find_by_name" do
     context "when search name in 'name'" do
-      subject { ISO3166::Country.find_by_name("Poland") }
+      before { @country = ISO3166::Country.find_by_name("Poland") }
 
-      its(:first) { should == "PL" }
+      it "should return a Country instance" do
+        @country.should be_a_kind_of(ISO3166::Country)
+      end
+      it "should be Poland" do
+        @country.alpha2.should == "PL"
+      end
     end
 
     context "when search name in 'names'" do
-      subject { ISO3166::Country.find_by_name("Polonia") }
+      before { @country = ISO3166::Country.find_by_name("Polonia") }
 
-      its(:first) { should == "PL" }
+      it "should return a Country instance" do
+        @country.should be_a_kind_of(ISO3166::Country)
+      end
+      it "should be Poland" do
+        @country.alpha2.should == "PL"
+      end
     end
   end
 

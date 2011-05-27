@@ -48,9 +48,11 @@ class ISO3166::Country
   end
 
   def self.find_by_name(name)
-    Data.select do |k,v|
+    result = Data.select do |k,v|
       v["name"] == name || v["names"].include?(name)
     end.first
+    # First result of the array is the country code
+    ISO3166::Country[result.first]
   end
 
   def subdivisions
